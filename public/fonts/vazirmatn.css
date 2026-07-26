@@ -1,0 +1,4 @@
+/* وزیرمتن — میزبانی محلی (بدون وابستگی به CDN خارجی) */
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/Vazirmatn-400.woff2") format("woff2"); }
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/Vazirmatn-700.woff2") format("woff2"); }
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 900; font-display: swap; src: url("/fonts/Vazirmatn-900.woff2") format("woff2"); }

@@ -1,0 +1,11 @@
+{
+  "name": "Different Agency Platform — مدیریت پروژه و انرژی",
+  "short_name": "Different",
+  "start_url": "/",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "fa",
+  "background_color": "#20203A",
+  "theme_color": "#5850EC",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
