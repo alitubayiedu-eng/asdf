@@ -1,0 +1,230 @@
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/Vazirmatn-400.woff2") format("woff2"); }
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/Vazirmatn-700.woff2") format("woff2"); }
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 900; font-display: swap; src: url("/fonts/Vazirmatn-900.woff2") format("woff2"); }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════
+   Different Agency Platform — سیستم طراحی
+   فلسفه: نرم، روشن، دوستانه. گوشه‌های گردتر، سایه‌های ملایم،
+   رنگ‌های کم‌فشار برای کار طولانی، و فاصله‌گذاری سخاوتمندانه.
+   ══════════════════════════════════════════════════════════ */
+:root {
+  --bg: 247 248 252;          /* روشن و کمی سرد — استراحت چشم */
+  --card: 255 255 255;
+  --surface: 242 244 250;
+  --line: 227 231 242;
+  --ink: 28 31 46;            /* مشکی نرم به‌جای مشکی خالص */
+  --cream: 255 255 255;
+
+  --primary: 88 80 236;       /* بنفش-آبی دوستانه */
+  --primary-deep: 67 58 205;
+  --primary-soft: 238 237 254;
+  --on-primary: 255 255 255;
+
+  --accent: 13 148 136;       /* فیروزه‌ای گرم */
+  --accent-lite: 45 212 191;
+  --on-accent: 255 255 255;
+
+  --ok: 22 163 108;
+  --warn: 217 145 22;
+  --danger: 225 72 78;
+
+  --sidebar: 32 32 58;        /* سرمه‌ای نرم به‌جای سیاه */
+  --sidebar-2: 24 24 44;
+  --sidebar-fg: 255 255 255;
+  --sidebar-accent: 139 132 255;
+  --sidebar-hover: 48 48 78;
+
+  --shadow: 33 38 72;
+  --radius: 1rem;
+}
+
+[data-theme="dark"] {
+  --bg: 16 17 28;
+  --card: 24 25 39;
+  --surface: 30 31 48;
+  --line: 46 48 70;
+  --ink: 228 231 243;
+  --cream: 255 255 255;
+
+  --primary: 139 132 255;
+  --primary-deep: 112 104 245;
+  --primary-soft: 44 42 82;
+  --on-primary: 18 18 32;
+
+  --accent: 45 212 191;
+  --accent-lite: 94 234 212;
+  --on-accent: 8 30 28;
+
+  --ok: 52 199 138;
+  --warn: 234 179 60;
+  --danger: 244 106 112;
+
+  --sidebar: 20 21 34;
+  --sidebar-2: 14 15 26;
+  --sidebar-fg: 236 238 248;
+  --sidebar-accent: 139 132 255;
+  --sidebar-hover: 40 42 64;
+
+  --shadow: 0 0 0;
+}
+
+html { direction: rtl; }
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  @apply font-sans;
+  transition: background .25s ease, color .25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────── سطوح ─────────── */
+.card {
+  background: rgb(var(--card));
+  @apply rounded-2xl p-5;
+  border: 1px solid rgb(var(--line));
+  box-shadow: 0 1px 2px rgb(var(--shadow) / .04), 0 4px 16px rgb(var(--shadow) / .05);
+  transition: box-shadow .22s ease, border-color .22s ease, transform .22s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 10px 30px rgb(var(--shadow) / .10);
+  border-color: rgb(var(--primary) / .32);
+  transform: translateY(-2px);
+}
+
+/* کارت شاخص — عدد بزرگ و خوانا */
+.stat { @apply card relative overflow-hidden; }
+.stat::before {
+  content: ""; position: absolute; inset-inline: 0; top: 0; height: 3px;
+  background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--accent)));
+  opacity: .9;
+}
+
+/* ─────────── دکمه‌ها — بزرگ‌تر و قابل‌لمس‌تر ─────────── */
+.btn {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary { @apply btn; background: rgb(var(--primary)); color: rgb(var(--on-primary)); box-shadow: 0 2px 8px rgb(var(--primary) / .28); }
+.btn-primary:hover { background: rgb(var(--primary-deep)); box-shadow: 0 6px 18px rgb(var(--primary) / .34); }
+.btn-accent { @apply btn; background: rgb(var(--accent)); color: rgb(var(--on-accent)); box-shadow: 0 2px 8px rgb(var(--accent) / .26); }
+.btn-accent:hover { filter: brightness(1.08); box-shadow: 0 6px 18px rgb(var(--accent) / .32); }
+.btn-ghost { @apply btn; background: rgb(var(--card)); color: rgb(var(--ink)); border: 1px solid rgb(var(--line)); }
+.btn-ghost:hover { background: rgb(var(--primary-soft)); border-color: rgb(var(--primary) / .35); color: rgb(var(--primary-deep)); }
+
+.accent-solid { background: rgb(var(--accent)); color: rgb(var(--on-accent)); }
+.chip-on { background: rgb(var(--primary)); color: rgb(var(--on-primary)); }
+
+/* ─────────── فرم — واضح‌تر و بخشنده‌تر ─────────── */
+.input {
+  @apply w-full rounded-xl px-3.5 py-2.5 text-sm transition-all focus:outline-none;
+  background: rgb(var(--card));
+  color: rgb(var(--ink));
+  border: 1.5px solid rgb(var(--line));
+}
+.input:hover { border-color: rgb(var(--primary) / .28); }
+.input:focus { border-color: rgb(var(--primary)); box-shadow: 0 0 0 4px rgb(var(--primary) / .13); }
+.input:disabled { opacity: .55; }
+.label { @apply mb-1.5 block text-xs font-bold text-ink/60; }
+::placeholder { color: rgb(var(--ink) / .34); }
+select.input option { background: rgb(var(--card)); color: rgb(var(--ink)); }
+
+/* ─────────── جدول — سطرهای بازتر ─────────── */
+.th {
+  @apply px-3.5 py-3 text-right text-xs font-bold whitespace-nowrap;
+  color: rgb(var(--ink) / .58);
+  background: rgb(var(--surface));
+  border-bottom: 1px solid rgb(var(--line));
+}
+.td { @apply px-3.5 py-3 text-sm whitespace-nowrap; border-top: 1px solid rgb(var(--line) / .7); }
+tbody tr { transition: background .15s ease; }
+tbody tr:hover { background: rgb(var(--primary) / .04); }
+
+/* ─────────── چیپ ─────────── */
+.chip { @apply inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-bold; }
+.code-chip {
+  @apply chip; direction: ltr;
+  background: rgb(var(--accent) / .10); color: rgb(var(--accent));
+  font-family: ui-monospace, "SF Mono", monospace;
+}
+
+/* ─────────── تب‌ها ─────────── */
+.tab { @apply relative px-4 py-2.5 text-sm font-bold transition-colors; color: rgb(var(--ink) / .52); }
+.tab:hover { color: rgb(var(--ink) / .85); }
+.tab-active { color: rgb(var(--primary)); }
+.tab-active::after {
+  content: ""; position: absolute; inset-inline: .5rem; bottom: -1px; height: 3px;
+  border-radius: 3px; background: rgb(var(--primary));
+}
+
+/* ─────────── سایدبار ─────────── */
+.sidebar-shell {
+  background: linear-gradient(168deg, rgb(var(--sidebar)) 0%, rgb(var(--sidebar-2)) 100%);
+  color: rgb(var(--sidebar-fg));
+}
+.nav-item {
+  @apply relative flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-bold transition-all;
+  color: rgb(var(--sidebar-fg) / .70);
+}
+.nav-item:hover { background: rgb(var(--sidebar-hover)); color: rgb(var(--sidebar-fg)); }
+.nav-item-active { background: rgb(var(--sidebar-accent) / .18); color: rgb(var(--sidebar-accent)); }
+.nav-item-active::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: 18%; bottom: 18%;
+  width: 3.5px; border-radius: 0 4px 4px 0; background: rgb(var(--sidebar-accent));
+}
+.nav-group-title {
+  @apply mb-2 px-3 text-[10px] font-bold uppercase tracking-wider;
+  color: rgb(var(--sidebar-fg) / .34);
+}
+
+/* ─────────── نوار پیشرفت ─────────── */
+.bar { @apply h-2.5 w-full overflow-hidden rounded-full; background: rgb(var(--line)); }
+.bar > span { @apply block h-full rounded-full transition-all; background: linear-gradient(90deg, rgb(var(--primary)), rgb(var(--accent))); }
+
+.pulse-dot { @apply inline-block h-2 w-2 rounded-full; background: rgb(var(--ok)); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+
+/* ─────────── تب‌های پروژه در سایدبار ─────────── */
+.side-tab {
+  @apply flex w-full items-center gap-1.5 rounded-xl px-3 py-2 text-[13px] font-bold transition-all;
+  color: rgb(var(--sidebar-fg) / .64);
+}
+.side-tab:hover { background: rgb(var(--sidebar-hover)); color: rgb(var(--sidebar-fg)); }
+.side-tab-active { background: rgb(var(--sidebar-accent) / .16); color: rgb(var(--sidebar-accent)); position: relative; }
+.side-tab-active::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: 22%; bottom: 22%;
+  width: 3.5px; border-radius: 0 4px 4px 0; background: rgb(var(--sidebar-accent));
+}
+.side-scroll::-webkit-scrollbar { width: 6px; }
+.side-scroll::-webkit-scrollbar-track { background: transparent; }
+.side-scroll::-webkit-scrollbar-thumb { background: rgb(255 255 255 / .14); border-radius: 3px; }
+.side-scroll::-webkit-scrollbar-thumb:hover { background: rgb(255 255 255 / .24); }
+.side-scroll { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .14) transparent; }
+
+/* ─────────── حالت خالی — راهنمای دوستانه ─────────── */
+.empty {
+  @apply flex flex-col items-center justify-center gap-2 rounded-2xl px-6 py-10 text-center;
+  border: 1.5px dashed rgb(var(--line));
+  background: rgb(var(--surface) / .55);
+}
+.empty-icon {
+  @apply grid h-12 w-12 place-items-center rounded-2xl text-xl;
+  background: rgb(var(--primary-soft)); color: rgb(var(--primary));
+}
+.empty-title { @apply text-sm font-black; }
+.empty-hint { @apply max-w-sm text-xs leading-6 text-ink/50; }
+
+/* راهنمای درون‌خطی (نکته) */
+.hint {
+  @apply flex items-start gap-2 rounded-xl px-3 py-2 text-xs leading-6;
+  background: rgb(var(--primary-soft)); color: rgb(var(--primary-deep));
+}
+
+/* عنوان صفحه */
+.page-title { @apply text-xl font-black tracking-tight; }
+.page-sub { @apply mt-0.5 text-xs text-ink/50; }
+
+/* اسکلت بارگذاری */
+.skeleton { @apply animate-pulse rounded-xl; background: rgb(var(--line) / .7); }
